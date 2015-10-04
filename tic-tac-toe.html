@@ -7,9 +7,38 @@
 			var map_size = prompt("Enter map size, map would be square")
 			for (var i = 0; i < map_size * map_size; i++)
 			{
-				map.push("");
+				map.push("-");
 			};
-			console.log(map)
+			//display map
+			var display_map = function(map)
+			{
+				var map_str = [];
+				for (var i = 0; i < map_size; i++)
+				{
+					for (var j = 0; j < map_size; j++)
+					{
+						map_str[j] = map[i * map_size + j];
+						if (j === map_size - 1)
+						{
+							console.log(map_str);
+							map_str = []
+						}
+					}
+				};
+			};
+			
+			//user turn
+			var user_turn_x = function (game_map)
+			{
+				var u_turn_x = parseFloat(prompt("Enter first number - x position in game map"));
+				var u_turn_y = parseFloat(prompt("Enter second number - y position in game map"));
+				game_map[u_turn_x + (u_turn_y - 1)* map_size - 1] = "x";
+				map = game_map;
+			};
+			user_turn_x(map);
+
+			console.log(map);
+			display_map(map);
         </script>
 	</head>
 	<body> 
