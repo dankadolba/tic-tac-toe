@@ -27,15 +27,26 @@
 				};
 			};
 			
-			//user turn
+			//user turn x
 			var user_turn_x = function (game_map)
 			{
-				var u_turn_x = parseFloat(prompt("Enter first number - x position in game map"));
-				var u_turn_y = parseFloat(prompt("Enter second number - y position in game map"));
+				var u_turn_x = parseFloat(prompt("Position for x.\nEnter first number - x position in game map"));
+				var u_turn_y = parseFloat(prompt("Position for x.\nEnter second number - y position in game map"));
 				game_map[u_turn_x + (u_turn_y - 1)* map_size - 1] = "x";
 				map = game_map;
 			};
+			
+			//user turn o
+			var user_turn_o = function (game_map)
+			{
+				var u_turn_x = parseFloat(prompt("Position for o.\nEnter first number - x position in game map"));
+				var u_turn_y = parseFloat(prompt("Position for o.\nEnter second number - y position in game map"));
+				game_map[u_turn_x + (u_turn_y - 1)* map_size - 1] = "o";
+				map = game_map;
+			};
+			
 			user_turn_x(map);
+			user_turn_o(map);
 
 			console.log(map);
 			display_map(map);
