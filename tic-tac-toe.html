@@ -44,12 +44,61 @@
 				game_map[u_turn_x + (u_turn_y - 1)* map_size - 1] = "o";
 				map = game_map;
 			};
-			
-			user_turn_x(map);
-			user_turn_o(map);
+			//wincheck
+			var who_win = "";
+			var win_check = function (game_map, val)
+			{
+				var dx = [0, 1, 1];
+				var dy = [1, 1, 0];
+				for (var i = 0; i < map_size; i++)
+				{
+					for (var j = 0; j < map_size; j++)
+					{
+						for (var k = 0; k < 3; k++)
+						{
+							var res = true;
+							for (var m = 0; m < 3; m++)
+							{
+								if (game_map[i + dx[k]*m + (j + dy[k]*m)*map_size] != val)
+								{
+									res = false;
+									break;
+								}
+							}
+							if (res)
+							{
+								who_win = val;
+								return true;
+							}
+						}
+					};
+				};
+			};
+			//game
+			var game = false;
+			while (!game)
+			{
+				user_turn_x(map);
+				user_turn_o(map);
+				if (win_check(map,"x") || win_check(map, "o"))
+				{
+					game = true;
+				}
+				console.log(map);
+				display_map(map);
+				if (who_win === "x")
+				{
+					console.log("x win")
+				}
+				else if (who_win === "o")
+				{
+					console.log("o win");
+				}
+				
+			};
 
-			console.log(map);
-			display_map(map);
+
+			
         </script>
 	</head>
 	<body> 
